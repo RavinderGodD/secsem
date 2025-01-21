@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Floating Bonus Text</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.ecomain{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    float: left;
+    background-color: rgb(255, 255, 255);
+}
+
+.ecomainstate{
+    width: 1199px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.ehcomainstateplus{
+    width: 100%;
+    float: left;
+}
+
+        /* Basic page styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        /* Floating bonus text */
+        .bonus-text {
+            position: absolute;
+            font-size: 24px;
+            font-weight: bold;
+            color: #d9534f;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 5px;
+            animation: moveText 10s ease-in-out infinite, floatText 2s ease-in-out infinite;
+            pointer-events: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation-delay: 1s;  /* Delay before it starts floating */
+        }
+
+        /* Floating (bouncing up and down) animation */
+        @keyframes floatText {
+            0% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(-20px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 0;
+            }
+        }
+
+        /* Movement animation with random positions */
+        @keyframes moveText {
+            0% {
+                top: 10%;
+                left: 5%;
+            }
+            25% {
+                top: 5%;
+                left: 80%;
+            }
+            50% {
+                top: 20%;
+                left: 90%;
+            }
+            75% {
+                top: 75%;
+                left: 70%;
+            }
+            100% {
+                top: 85%;
+                left: 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ecomain">
+        <div class="ecomainstate">
+            <div class="ehcomainstateplus">
+
+    <!-- Floating bonus text -->
+    <div class="bonus-text">Here&nbsp;is&nbsp;Not&nbsp;Any&nbsp;Information&nbsp;Go&nbsp;Back</div>
+
+    <script>
+        // Optional: You can add a delay before the text starts floating when the page loads
+        window.onload = function() {
+            setTimeout(function() {
+                document.querySelector('.bonus-text').style.opacity = '1'; // Fade in after 1 second
+            }, 1000); // Delay of 1 second before the text starts floating
+        };
+
+        
+// Prevent pinch-to-zoom on mobile, but allow scrolling
+document.addEventListener('touchstart', function(e) {
+    if (e.touches.length > 1) {
+        e.preventDefault();  // Prevent pinch-to-zoom (multi-finger touch)
+    }
+}, { passive: false });
+
+document.addEventListener('touchmove', function(e) {
+    if (e.scale && e.scale !== 1) {  // Pinch-to-zoom detection
+        e.preventDefault();  // Prevent zooming but allow scrolling
+    }
+}, { passive: false });
+
+// Optionally, disable gesture zooming for double-tap
+document.addEventListener('gesturestart', function(e) {
+    e.preventDefault();  // Disable gesture zooming
+});
+    </script>
+    </div>
+    </div>
+    </div>
+
+</body>
+</html>

@@ -17,3 +17,17 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(card);
     });
 });
+
+
+// Prevent pinch-to-zoom on mobile
+document.addEventListener('touchstart', function(e) {
+    if (e.touches.length > 1) {
+        e.preventDefault();
+    }
+}, { passive: false });
+
+document.addEventListener('touchmove', function(e) {
+    if (e.scale !== 1) {  // Pinch to zoom detection
+        e.preventDefault();
+    }
+}, { passive: false });
